@@ -68,10 +68,19 @@ function fPB.ShowSpellID()
     end
   end)
 
-  GameTooltip:HookScript("OnTooltipSetSpell", function(self)
-    local id = select(2, self:GetSpell())
+  local function OnTooltipSetItem(tooltip, data)
+    local id = select(2, tooltip:GetSpell())
     if id then
-      addLine(self, id, types.spell)
+      addLine(tooltip, id, types.spell)
     end
-  end)
+  end
+
+  -- Replace 'Enum.TooltipDataType.Item' with an appropriate type for the tooltip
+  -- data you are wanting to process; eg. use 'Enum.TooltipDataType.Spell' for
+  -- replacing usage of OnTooltipSetSpell.
+  --
+  -- If you wish to respond to all tooltip data updates, you can instead replace
+  -- the enum with 'TooltipDataProcessor.AllTypes' (or the string "ALL").
+
+  TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, OnTooltipSetItem)
 end

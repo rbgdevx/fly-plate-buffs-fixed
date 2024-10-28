@@ -1,6 +1,6 @@
 ## Interface: 110005
 ## Title: flyPlateBuffsFixed
-## Version: 11.0.5
+## Version: 11.0.5.1
 ## Author: RBGDEV
 ## Notes: Shows buffs/debuffs on nameplates
 ## OptionalDeps: Ace3, LibStub
@@ -9,8 +9,8 @@
 ## X-License: All Rights Reserved
 ## X-Website: https://www.curseforge.com/wow/addons/flyplatebuffsfixed
 ## X-Curse-Project-ID: 1118163
-## X-Wago-ID:
-## X-WoWI-ID:
+## X-Wago-ID: aNDmBA6o
+## X-WoWI-ID: 26867
 
 libs\LibStub\LibStub.lua
 libs\CallbackHandler-1.0\CallbackHandler-1.0.xml

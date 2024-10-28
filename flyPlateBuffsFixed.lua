@@ -865,7 +865,7 @@ local function Nameplate_Added(...)
     if db.notHideOnPersonalResource and UnitIsUnit(nameplateID, "player") then
       frame.UnitFrame.BuffFrame:SetAlpha(1)
     else
-      frame.UnitFrame.BuffFrame:SetAlpha(0) --Hide terrible standart debuff frame
+      frame.UnitFrame.BuffFrame:SetAlpha(0) --Hide terrible standard debuff frame
     end
   end
 
@@ -915,32 +915,35 @@ end
 local CacheSpells = fPB.CacheSpells
 
 function fPB.AddNewSpell(spell)
+  local spellInfo = GetSpellInfo(spell)
+  local spellID = spellInfo and spellInfo.spellID or spell
+
   local defaultSpell
-  if db.ignoredDefaultSpells[spell] then
-    db.ignoredDefaultSpells[spell] = nil
+  if db.ignoredDefaultSpells[spellID] then
+    db.ignoredDefaultSpells[spellID] = nil
     defaultSpell = true
   end
-  local spellID = tonumber(spell)
-  if db.Spells[spell] and not defaultSpell then
+
+  if db.Spells[spellID] and not defaultSpell then
     if spellID then
-      local spellInfo = GetSpellInfo(spellID)
-      DEFAULT_CHAT_FRAME:AddMessage(
-        chatColor
-          .. L["Spell with this ID is already in the list. Its name is "]
-          .. linkColor
-          .. "|Hspell:"
-          .. spellID
-          .. "|h["
-          .. spellInfo.name
-          .. "]|h|r"
-      )
+      if spellInfo then
+        DEFAULT_CHAT_FRAME:AddMessage(
+          chatColor
+            .. L["Spell with this ID is already in the list. Its name is "]
+            .. linkColor
+            .. "|Hspell:"
+            .. spellID
+            .. "|h["
+            .. spellInfo.name
+            .. "]|h|r"
+        )
+      end
       return
     else
-      DEFAULT_CHAT_FRAME:AddMessage(spell .. chatColor .. L[" already in the list."] .. "|r")
+      DEFAULT_CHAT_FRAME:AddMessage(spellID .. chatColor .. L[" already in the list."] .. "|r")
       return
     end
   end
-  local spellInfo = GetSpellInfo(spellID)
   if spellID and spellInfo then
     if not db.Spells[spellID] then
       db.Spells[spellID] = {
@@ -954,6 +957,7 @@ function fPB.AddNewSpell(spell)
     end
   else
     db.Spells[spell] = {
+      checkID = true,
       show = 1,
       name = spell,
       scale = 1,
@@ -978,16 +982,18 @@ end
 function fPB.ChangeSpellID(oldID, newID)
   if db.Spells[newID] then
     local spellInfo = GetSpellInfo(newID)
-    DEFAULT_CHAT_FRAME:AddMessage(
-      chatColor
-        .. L["Spell with this ID is already in the list. Its name is "]
-        .. linkColor
-        .. "|Hspell:"
-        .. newID
-        .. "|h["
-        .. spellInfo.name
-        .. "]|h|r"
-    )
+    if spellInfo then
+      DEFAULT_CHAT_FRAME:AddMessage(
+        chatColor
+          .. L["Spell with this ID is already in the list. Its name is "]
+          .. linkColor
+          .. "|Hspell:"
+          .. newID
+          .. "|h["
+          .. spellInfo.name
+          .. "]|h|r"
+      )
+    end
     return
   end
   db.Spells[newID] = {}
@@ -997,16 +1003,18 @@ function fPB.ChangeSpellID(oldID, newID)
   end
   fPB.RemoveSpell(oldID)
   local spellInfo = GetSpellInfo(newID)
-  DEFAULT_CHAT_FRAME:AddMessage(
-    spellInfo.name
-      .. chatColor
-      .. L[" ID changed "]
-      .. "|r"
-      .. (tonumber(oldID) or "nil")
-      .. chatColor
-      .. " -> |r"
-      .. newID
-  )
+  if spellInfo then
+    DEFAULT_CHAT_FRAME:AddMessage(
+      spellInfo.name
+        .. chatColor
+        .. L[" ID changed "]
+        .. "|r"
+        .. (tonumber(oldID) or "nil")
+        .. chatColor
+        .. " -> |r"
+        .. newID
+    )
+  end
   UpdateAllNameplates(true)
   fPB.BuildSpellList()
 end
@@ -1021,7 +1029,7 @@ local function ConvertDBto2()
         if not spellID then
           for i = 1, #defaultLargeSpells do
             local spellInfo = GetSpellInfo(defaultLargeSpells[i])
-            if n == spellInfo.name then
+            if spellInfo and n == spellInfo.name then
               spellID = defaultLargeSpells[i]
               break
             end
@@ -1030,7 +1038,7 @@ local function ConvertDBto2()
         if not spellID then
           for i = 1, #defaultMediumSpells do
             local spellInfo = GetSpellInfo(defaultMediumSpells[i])
-            if n == spellInfo.name then
+            if spellInfo and n == spellInfo.name then
               spellID = defaultMediumSpells[i]
               break
             end
@@ -1055,7 +1063,7 @@ local function ConvertDBto2()
         local spellID
         for i = 1, #defaultLargeSpells do
           local spellInfo = GetSpellInfo(defaultLargeSpells[i])
-          if n == spellInfo.name then
+          if spellInfo and n == spellInfo.name then
             spellID = defaultLargeSpells[i]
             break
           end
@@ -1063,7 +1071,7 @@ local function ConvertDBto2()
         if not spellID then
           for i = 1, #defaultMediumSpells do
             local spellInfo = GetSpellInfo(defaultMediumSpells[i])
-            if n == spellInfo.name then
+            if spellInfo and n == spellInfo.name then
               spellID = defaultMediumSpells[i]
               break
             end

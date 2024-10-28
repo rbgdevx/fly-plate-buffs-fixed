@@ -11,9 +11,10 @@ local chatColor = fPB.chatColor
 local linkColor = fPB.linkColor
 
 function fPB.OptionsOnEnable()
-  db = fPB.db.profile
-
-  fPB.BuildSpellList()
+  if fPB.db then
+    db = fPB.db.profile
+    fPB.BuildSpellList()
+  end
 end
 
 local tooltip = tooltip or CreateFrame("GameTooltip", "fPBScanSpellDescTooltip", UIParent, "GameTooltipTemplate")
@@ -1017,7 +1018,18 @@ fPB.SpellsTable = {
 local color
 local iconTexture
 local function SpellTexture(spellID)
-  iconTexture = GetSpellTexture(spellID)
+  if not spellID then
+    return 134400 -- Inv_misc_questionmark
+  end
+  local correctSpellID = spellID
+  if type(spellID) == "string" then
+    local spellInfo = GetSpellInfo(spellID)
+    if not spellInfo then
+      return 134400 -- Inv_misc_questionmark
+    end
+    correctSpellID = spellInfo.spellID
+  end
+  iconTexture = GetSpellTexture(correctSpellID)
   if not iconTexture then
     return 134400 -- Inv_misc_questionmark
   end
@@ -1055,7 +1067,8 @@ function fPB.BuildSpellList()
     local Spell = Spells[s]
     local spellInfo = GetSpellInfo(s)
     local name = Spell.name and Spell.name or (spellInfo and spellInfo.name or tostring(s))
-    local SpellID = Spell.spellID
+    local SpellID = Spell.spellID and Spell.spellID or (spellInfo and spellInfo.spellID or 12345)
+    local spellDesc = ""
     if Spell.show == 1 then
       color = "|cFF00FF00" --green
     elseif Spell.show == 3 then
@@ -1185,10 +1198,9 @@ function fPB.BuildSpellList()
           type = "toggle",
           name = L["Check spell ID"],
           set = function(info, value)
-            print(info, value)
-            if value and not Spell.spellID then
+            if value and (not Spell.spellID or not tonumber(Spell.spellID)) then
               Spell.checkID = nil
-              DEFAULT_CHAT_FRAME:AddMessage(tostring(spellID) .. chatColor .. L[" Incorrect ID"])
+              DEFAULT_CHAT_FRAME:AddMessage(tostring(SpellID) .. chatColor .. L[" Incorrect ID"])
             else
               Spell.checkID = value
             end
