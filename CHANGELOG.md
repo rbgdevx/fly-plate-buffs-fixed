@@ -1,5 +1,9 @@
 # flyPlateBuffsFixed
 
+## [v11.0.5.2](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.5.2) (2024-11-20)
+
+- Adding the ability to latch onto the icon frame for use in OmniCC settings
+
 ## [v11.0.5.1](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.5.1) (2024-10-28)
 
 - Fixing the ability to add spells via name instead of just by id

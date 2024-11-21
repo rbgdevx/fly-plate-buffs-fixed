@@ -708,7 +708,7 @@ local function iconOnHide(self)
   self.stackBg:Hide()
 end
 local function CreateBuffIcon(frame, i)
-  frame.fPBiconsFrame.iconsFrame[i] = CreateFrame("Button")
+  frame.fPBiconsFrame.iconsFrame[i] = CreateFrame("Button", AddonName .. "BuffIcon" .. i, frame.fPBiconsFrame)
   frame.fPBiconsFrame.iconsFrame[i]:SetParent(frame.fPBiconsFrame)
   local buffIcon = frame.fPBiconsFrame.iconsFrame[i]
 

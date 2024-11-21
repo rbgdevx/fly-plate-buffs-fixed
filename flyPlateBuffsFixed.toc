@@ -1,6 +1,6 @@
 ## Interface: 110005
 ## Title: flyPlateBuffsFixed
-## Version: 11.0.5.1
+## Version: 11.0.5.2
 ## Author: RBGDEV
 ## Notes: Shows buffs/debuffs on nameplates
 ## OptionalDeps: Ace3, LibStub
