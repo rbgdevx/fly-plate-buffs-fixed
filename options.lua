@@ -11,7 +11,7 @@ local chatColor = fPB.chatColor
 local linkColor = fPB.linkColor
 
 function fPB.OptionsOnEnable()
-  if fPB.db then
+  if fPB.db and fPB.db.profile then
     db = fPB.db.profile
     fPB.BuildSpellList()
   end

@@ -1,5 +1,12 @@
 # flyPlateBuffsFixed
 
+## [v11.0.7](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.7) (2024-12-17)
+
+- Fixing incorrect spellId variable usage
+- Adding additional check in options file
+- Setting the frame strata and level of the main frame to be directly above nameplates
+- update toc
+
 ## [v11.0.5.2](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.5.2) (2024-11-20)
 
 - Adding the ability to latch onto the icon frame for use in OmniCC settings

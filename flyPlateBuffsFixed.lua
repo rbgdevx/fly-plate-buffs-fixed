@@ -764,6 +764,15 @@ local function CreateBuffIcon(frame, i)
   end
 end
 
+local function GetUnitFrame(nameplate)
+  return nameplate.UnitFrame
+end
+
+local function GetHealthBarFrame(nameplate)
+  local UnitFrame = GetUnitFrame(nameplate)
+  return UnitFrame.HealthBarsContainer
+end
+
 local function UpdateUnitAuras(nameplateID, updateOptions)
   local frame = C_NamePlate_GetNamePlateForUnit(nameplateID)
   if not frame then
@@ -792,6 +801,9 @@ local function UpdateUnitAuras(nameplateID, updateOptions)
     -- if parent == frame then it will change scale and alpha with nameplates
     -- otherwise use UIParent, but this causes mess of icon/border textures
     frame.fPBiconsFrame = CreateFrame("Frame")
+    local attachmentFrame = GetHealthBarFrame(frame)
+    frame.fPBiconsFrame:SetFrameStrata("HIGH")
+    frame.fPBiconsFrame:SetFrameLevel(attachmentFrame:GetFrameLevel() + 1)
     local parent = db.parentWorldFrame and WorldFrame
     if not parent then
       parent = frame.unitFrame -- for ElvUI
@@ -1050,7 +1062,7 @@ local function ConvertDBto2()
           for k, v in pairs(s) do
             temp[spell][k] = v
           end
-          local spellInfo = GetSpellInfo(spellID)
+          local spellInfo = GetSpellInfo(spell)
           temp[spell].name = spellInfo and spellInfo.name or n
         end
       end
