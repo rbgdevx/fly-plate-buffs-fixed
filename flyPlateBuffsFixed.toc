@@ -1,9 +1,9 @@
 ## Interface: 110007
 ## Title: flyPlateBuffsFixed
-## Version: 11.0.7
+## Version: 11.0.7.1
 ## Author: RBGDEV
 ## Notes: Shows buffs/debuffs on nameplates
-## OptionalDeps: Ace3, LibStub
+## OptionalDeps: AceConfig-3.0, AceDB-3.0, AceDBOptions-3.0, AceGUI-3.0, AceGUI-3.0-SharedMediaWidgets, CallbackHandler-1.0, LibSharedMedia-3.0, LibStub
 ## SavedVariables: flyPlateBuffsFixedDB
 ## X-Credits: FlyNeko (Original Author), collinstevens (Last Co-Author), shamilla (Last Co-Author)
 ## X-License: GNU GENERAL PUBLIC LICENSE

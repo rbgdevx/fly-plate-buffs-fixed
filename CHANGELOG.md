@@ -1,5 +1,9 @@
 # flyPlateBuffsFixed
 
+## [v11.0.7.1](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.7.1) (2024-12-20)
+
+- update toc
+
 ## [v11.0.7](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.7) (2024-12-17)
 
 - Fixing incorrect spellId variable usage
