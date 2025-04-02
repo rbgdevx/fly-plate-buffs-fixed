@@ -1,5 +1,10 @@
 # flyPlateBuffsFixed
 
+## [v11.1.0](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.1.0) (2025-04-02)
+
+- Adding support for Plater, KUI, ElvUI, and TidyPlates
+- update toc
+
 ## [v11.0.7.1](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.0.7.1) (2024-12-20)
 
 - update toc

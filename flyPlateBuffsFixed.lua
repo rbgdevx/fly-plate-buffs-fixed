@@ -260,6 +260,20 @@ local function SortFunc(a, b)
   end
 end
 
+local function GetAnchorFrame(nameplate)
+  if Plater and nameplate.unitFrame.PlaterOnScreen then
+    return nameplate.unitFrame
+  elseif nameplate.kui and nameplate.kui.bg and nameplate.kui:IsShown() then
+    return KuiNameplatesPlayerAnchor
+  elseif ElvUIPlayerNamePlateAnchor then
+    return ElvUIPlayerNamePlateAnchor
+  elseif TidyPlates and nameplate.extended then
+    return nameplate
+  else
+    return nameplate.UnitFrame
+  end
+end
+
 local function DrawOnPlate(frame)
   if not (#frame.fPBiconsFrame.iconsFrame > 0) then
     return
@@ -308,7 +322,8 @@ local function DrawOnPlate(frame)
   frame.fPBiconsFrame:SetWidth(maxWidth - db.xInterval)
   frame.fPBiconsFrame:SetHeight(sumHeight - db.yInterval)
   frame.fPBiconsFrame:ClearAllPoints()
-  frame.fPBiconsFrame:SetPoint(db.buffAnchorPoint, frame, db.plateAnchorPoint, db.xOffset, db.yOffset)
+  local anchorFrame = GetAnchorFrame(frame)
+  frame.fPBiconsFrame:SetPoint(db.buffAnchorPoint, anchorFrame, db.plateAnchorPoint, db.xOffset, db.yOffset)
   if MSQ then
     Group:ReSkin()
   end
