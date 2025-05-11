@@ -1,5 +1,10 @@
 # flyPlateBuffsFixed
 
+## [v11.1.5](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.1.5) (2025-05-11)
+
+- Assigning addon to my own category for organization
+- Update toc
+
 ## [v11.1.0](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.1.0) (2025-04-02)
 
 - Adding support for Plater, KUI, ElvUI, and TidyPlates
