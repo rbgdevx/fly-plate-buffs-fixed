@@ -52,6 +52,5 @@
   },
   "Lua.workspace.library": [
     "c:\\Users\\17186\\.cursor\\extensions\\ketho.wow-api-0.20.7\\Annotations\\Core"
-  ],
-  "Lua.type.weakUnionCheck": true
+  ]
 }

@@ -1,5 +1,9 @@
 # flyPlateBuffsFixed
 
+## [v11.2.1](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.1) (2025-08-14)
+
+- Fixing nameplate anchoring code, removes old code which actually makes it work with classic too
+
 ## [v11.2.0](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.0) (2025-08-14)
 
 - Fixing region bug found on the ptr with an ace lib

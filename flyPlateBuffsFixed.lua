@@ -781,15 +781,6 @@ local function CreateBuffIcon(frame, i)
   end
 end
 
-local function GetUnitFrame(nameplate)
-  return nameplate.UnitFrame
-end
-
-local function GetHealthBarFrame(nameplate)
-  local UnitFrame = GetUnitFrame(nameplate)
-  return UnitFrame.HealthBarsContainer
-end
-
 local function UpdateUnitAuras(nameplateID, updateOptions)
   local frame = C_NamePlate_GetNamePlateForUnit(nameplateID)
   if not frame then
@@ -818,7 +809,7 @@ local function UpdateUnitAuras(nameplateID, updateOptions)
     -- if parent == frame then it will change scale and alpha with nameplates
     -- otherwise use UIParent, but this causes mess of icon/border textures
     frame.fPBiconsFrame = CreateFrame("Frame")
-    local attachmentFrame = GetHealthBarFrame(frame)
+    local attachmentFrame = GetAnchorFrame(frame)
     frame.fPBiconsFrame:SetFrameStrata("HIGH")
     frame.fPBiconsFrame:SetFrameLevel(attachmentFrame:GetFrameLevel() + 1)
     local parent = db.parentWorldFrame and WorldFrame
