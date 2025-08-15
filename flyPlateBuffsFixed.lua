@@ -261,16 +261,12 @@ local function SortFunc(a, b)
 end
 
 local function GetAnchorFrame(nameplate)
-  if Plater and nameplate.unitFrame.PlaterOnScreen then
-    return nameplate.unitFrame
-  elseif nameplate.kui and nameplate.kui.bg and nameplate.kui:IsShown() then
-    return KuiNameplatesPlayerAnchor
-  elseif ElvUIPlayerNamePlateAnchor then
-    return ElvUIPlayerNamePlateAnchor
-  elseif TidyPlates and nameplate.extended then
-    return nameplate
-  else
+  if nameplate.UnitFrame then
     return nameplate.UnitFrame
+  elseif nameplate.unitFrame then
+    return nameplate.unitFrame
+  else
+    return nameplate
   end
 end
 
@@ -486,10 +482,10 @@ local function ScanUnitBuffs(nameplateID, frame)
 end
 
 local function FilterUnits(nameplateID)
-  if db.showOnlyInCombat and not UnitAffectingCombat("player") then
+  if db and db.showOnlyInCombat and not UnitAffectingCombat("player") then
     return true
   end -- InCombatLockdown()
-  if db.showUnitInCombat and not UnitAffectingCombat(nameplateID) then
+  if db and db.showUnitInCombat and not UnitAffectingCombat(nameplateID) then
     return true
   end
 
@@ -497,22 +493,26 @@ local function FilterUnits(nameplateID)
   if UnitIsUnit(nameplateID, "player") then
     return true
   end
-  if UnitIsPlayer(nameplateID) and not db.showOnPlayers then
+  if UnitIsPlayer(nameplateID) and (db and not db.showOnPlayers) then
     return true
   end
-  if UnitPlayerControlled(nameplateID) and not UnitIsPlayer(nameplateID) and not db.showOnPets then
+  if UnitPlayerControlled(nameplateID) and not UnitIsPlayer(nameplateID) and (db and not db.showOnPets) then
     return true
   end
-  if not UnitPlayerControlled(nameplateID) and not UnitIsPlayer(nameplateID) and not db.showOnNPC then
+  if not UnitPlayerControlled(nameplateID) and not UnitIsPlayer(nameplateID) and (db and not db.showOnNPC) then
     return true
   end
-  if UnitIsEnemy(nameplateID, "player") and not db.showOnEnemy then
+  if UnitIsEnemy(nameplateID, "player") and (db and not db.showOnEnemy) then
     return true
   end
-  if UnitIsFriend(nameplateID, "player") and not db.showOnFriend then
+  if UnitIsFriend(nameplateID, "player") and (db and not db.showOnFriend) then
     return true
   end
-  if not UnitIsFriend(nameplateID, "player") and not UnitIsEnemy(nameplateID, "player") and not db.showOnNeutral then
+  if
+    not UnitIsFriend(nameplateID, "player")
+    and not UnitIsEnemy(nameplateID, "player")
+    and (db and not db.showOnNeutral)
+  then
     return true
   end
 
@@ -637,7 +637,7 @@ local function UpdateBuffIcon(self)
     self.stacktext:Show()
   end
 end
-local function UpdateBuffIconOptions(self)
+local function UpdateBuffIconOptions(self, token)
   self.texture:SetAllPoints(self)
 
   self.border:SetAllPoints(self)
@@ -703,9 +703,11 @@ local function UpdateBuffIconOptions(self)
   end
 
   if db.showTooltip then
-    self:SetScript("OnEnter", function(self)
-      tooltip:SetOwner(self, "ANCHOR_LEFT")
-      tooltip:SetUnitAura(self:GetParent():GetParent().namePlateUnitToken, self.id, self.type)
+    self:SetScript("OnEnter", function(_self)
+      if token then
+        tooltip:SetOwner(_self, "ANCHOR_LEFT")
+        tooltip:SetUnitAura(token, _self.id, _self.type)
+      end
     end)
     self:SetScript("OnLeave", function()
       tooltip:Hide()
@@ -745,7 +747,7 @@ local function CreateBuffIcon(frame, i)
   buffIcon.stackBg = buffIcon:CreateTexture(nil, "BORDER")
   buffIcon.stackBg:SetColorTexture(0, 0, 0, 0.75)
 
-  UpdateBuffIconOptions(buffIcon)
+  UpdateBuffIconOptions(buffIcon, frame.namePlateUnitToken)
 
   buffIcon.stacktext:Hide()
   buffIcon.border:Hide()
@@ -854,7 +856,7 @@ local function UpdateUnitAuras(nameplateID, updateOptions)
     buffIcon.width = db.baseWidth * buff.scale
     buffIcon.height = db.baseHeight * buff.scale
     if updateOptions then
-      UpdateBuffIconOptions(buffIcon)
+      UpdateBuffIconOptions(buffIcon, frame.namePlateUnitToken)
     end
     UpdateBuffIcon(buffIcon)
     buffIcon:Show()
@@ -889,7 +891,7 @@ local function Nameplate_Added(...)
   local nameplateID = ...
   local frame = C_NamePlate_GetNamePlateForUnit(nameplateID)
   if frame.UnitFrame and frame.UnitFrame.BuffFrame then
-    if db.notHideOnPersonalResource and UnitIsUnit(nameplateID, "player") then
+    if db and db.notHideOnPersonalResource and UnitIsUnit(nameplateID, "player") then
       frame.UnitFrame.BuffFrame:SetAlpha(1)
     else
       frame.UnitFrame.BuffFrame:SetAlpha(0) --Hide terrible standard debuff frame
@@ -1175,7 +1177,7 @@ fPB.Events:SetScript("OnEvent", function(self, event, ...)
   elseif event == "PLAYER_LOGIN" then
     fPB.OptionsOnEnable()
     fPB.FixBlizzard()
-    if db.showSpellID then
+    if db and db.showSpellID then
       fPB.ShowSpellID()
     end
     MSQ = LibStub("Masque", true)
@@ -1191,7 +1193,7 @@ fPB.Events:SetScript("OnEvent", function(self, event, ...)
     fPB.Events:RegisterEvent("NAME_PLATE_UNIT_ADDED")
     fPB.Events:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
 
-    if db.showOnlyInCombat then
+    if db and db.showOnlyInCombat then
       fPB.RegisterCombat()
     else
       fPB.Events:RegisterEvent("UNIT_AURA")

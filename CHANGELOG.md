@@ -1,5 +1,11 @@
 # flyPlateBuffsFixed
 
+## [v11.2.0](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.0) (2025-08-14)
+
+- Fixing region bug found on the ptr with an ace lib
+- Fixing nameplate issue with ElvUI
+- Update toc
+
 ## [v11.1.5](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.1.5) (2025-05-11)
 
 - Assigning addon to my own category for organization

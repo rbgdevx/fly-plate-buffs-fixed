@@ -2,9 +2,10 @@
   "Lua.runtime.version": "Lua 5.1",
   "Lua.diagnostics.globals": [
     "SlashCmdList",
-    "DEFAULT_CHAT_FRAME",
-    "InterfaceOptionsFrame_OpenToCategory",
+    "UIParent",
     "WorldFrame",
+    "DEFAULT_CHAT_FRAME",
+    "Clamp",
     "SELECTED_CHAT_FRAME",
     "NORMAL_FONT_COLOR",
     "GameFontNormal",
@@ -12,30 +13,31 @@
     "ACCEPT",
     "CANCEL",
     "Settings",
-    "InterfaceOptions_AddCategory",
     "GameFontHighlightLarge",
     "GameFontHighlightSmall",
     "NORMAL_FONT_COLOR_CODE",
     "FONT_COLOR_CODE_CLOSE",
+    "BackdropTemplateMixin",
     "CLOSE",
     "GameFontDisableSmall",
+    "GameTooltip",
     "GameFontNormalSmall",
     "SetDesaturation",
+    "WOW_PROJECT_ID",
+    "WOW_PROJECT_MAINLINE",
     "ColorPickerFrame",
-    "OpacitySliderFrame",
     "ChatFontNormal",
     "OKAY",
     "NOT_BOUND",
     "DISABLE",
+    "SetCVar",
     "ReloadUI",
+    "GetCVarDefault",
+    "GetCVar",
+    "GetUnitName",
     "CompactUnitFrame_IsTapDenied",
     "CompactUnitFrame_IsOnThreatListWithPlayer",
-    "TooltipDataProcessor",
-    "UIParent",
-    "Clamp",
-    "SetCVar",
-    "GetCVarDefault",
-    "GetCVar"
+    "TooltipDataProcessor"
   ],
   "Lua.runtime.builtin": {
     "basic": "disable",
@@ -49,6 +51,7 @@
     "utf8": "disable"
   },
   "Lua.workspace.library": [
-    "c:\\Users\\17186\\.cursor\\extensions\\ketho.wow-api-0.19.1\\Annotations"
-  ]
+    "c:\\Users\\17186\\.cursor\\extensions\\ketho.wow-api-0.20.7\\Annotations\\Core"
+  ],
+  "Lua.type.weakUnionCheck": true
 }
