@@ -1,5 +1,9 @@
 # flyPlateBuffsFixed
 
+## [v11.2.2](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.2) (2025-08-26)
+
+- Update toc
+
 ## [v11.2.1](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.1) (2025-08-14)
 
 - Fixing nameplate anchoring code, removes old code which actually makes it work with classic too
