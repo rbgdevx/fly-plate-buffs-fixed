@@ -261,10 +261,10 @@ local function SortFunc(a, b)
 end
 
 local function GetAnchorFrame(nameplate)
-  if nameplate.UnitFrame then
-    return nameplate.UnitFrame
-  elseif nameplate.unitFrame then
+  if nameplate.unitFrame then
     return nameplate.unitFrame
+  elseif nameplate.UnitFrame then
+    return nameplate.UnitFrame
   else
     return nameplate
   end

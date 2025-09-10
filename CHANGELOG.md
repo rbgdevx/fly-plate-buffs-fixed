@@ -1,5 +1,9 @@
 # flyPlateBuffsFixed
 
+## [v11.2.0.3](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.0.3) (2025-09-10)
+
+- Formatting
+
 ## [v11.2.2](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.2) (2025-08-26)
 
 - Update toc

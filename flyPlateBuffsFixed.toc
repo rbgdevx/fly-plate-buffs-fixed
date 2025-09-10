@@ -1,6 +1,6 @@
 ## Interface: 110200
 ## Title: flyPlateBuffsFixed
-## Version: 11.2.2
+## Version: 11.2.0.3
 ## Author: RBGDEV
 ## Notes: Shows buffs/debuffs on nameplates
 ## SavedVariables: flyPlateBuffsFixedDB
