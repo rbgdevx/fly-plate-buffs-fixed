@@ -1,5 +1,9 @@
 # flyPlateBuffsFixed
 
+## [v11.2.7.1](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.7.1) (2026-02-23)
+
+- Updating toc
+
 ## [v11.2.7](https://github.com/rbgdevx/flyPlateBuffsFixed/releases/tag/v11.2.7) (2026-01-06)
 
 - Updating toc
